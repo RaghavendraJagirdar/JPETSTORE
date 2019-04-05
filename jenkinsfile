@@ -1,0 +1,18 @@
+node {
+        stage("checkout")
+        {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/RaghavendraJagirdar/JPETSTORE.git']]])
+        }
+        stage("build")
+        {
+            sh label: '', script: 'mvn install'
+        }
+        stage("unit Testing")
+        {
+            echo "Test completed"
+        }
+        stage("Deploy")
+        {
+            echo "Deploy Completed"
+        }
+}
